@@ -1,3 +1,4 @@
+
 .card {
     height: 600px;
 }
@@ -11,3 +12,13 @@ textarea {
     height: 200px;
     width: 300px;
 }
+
+#map {
+    height: 75%;
+  }
+  html, body {
+    height: 75%;
+    margin: 0;
+    padding: 0;
+  }
+
