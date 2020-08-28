@@ -34,7 +34,21 @@ var myChart = new Chart(ctx, {
     }
   }
 });
-var address = "1%20UTSA%20Circle%252C%20San%20Antonio%252C%20TX"
+var toDoBtn = document.getElementById("addtodo");
+toDoBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  var addToDo = document.getElementById("add-to-do").value;
+  console.log(addToDo);
+    var commaReplace = addToDo.replace(/,/g,"%252C");
+    var fixedAddress = commaReplace.replace(/ /g,"%20");
+    console.log(fixedAddress)
+    var address = fixedAddress;
+    var addToList = document.getElementById("to-do-list");
+    var addListEl = document.createElement("li");
+    var btnEl = document.createElement("button");
+    addToList.append(addListEl);
+    addListEl.append(btnEl);
+    btnEl.innerHTML = "Map";
 
 var settings = {
   "async": true,
@@ -49,20 +63,20 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
   console.log(response);
-  var latitute = response.results[0].geometry.location.lat
-  console.log(latitute);
+  var latitude = response.results[0].geometry.location.lat
+  console.log(latitude);
   var longitude = response.results[0].geometry.location.lng
   console.log(longitude);
 
   var location = {
-    lat: latitute,
+    lat: latitude,
     lng: longitude
   };
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       center: location,
-      zoom: 8
+      zoom: 10,
     });
     var marker = new google.maps.Marker({
       position: location,
@@ -70,5 +84,5 @@ $.ajax(settings).done(function (response) {
     });
   };
   initMap();
-
+});
 });
