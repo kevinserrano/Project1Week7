@@ -21,15 +21,25 @@ textarea {
 
 .complete {
     background-color: cyan;
-    color: black;
+
+
 }
 
 .inprogress {
     background-color: yellow;
-    color: black;
+
 }
 
 .incomplete {
     background-color: red;
+
+}
+
+.complete,
+.inprogress,
+.incomplete {
     color: black;
+    border: black;
+    border-style: solid;
+    border-width: 1px;
 }
