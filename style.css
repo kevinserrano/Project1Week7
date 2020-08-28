@@ -1,0 +1,24 @@
+
+.card {
+    height: 600px;
+}
+
+.brand-logo {
+    margin-left: 2%;
+}
+
+textarea {
+    background-color: brown;
+    height: 200px;
+    width: 300px;
+}
+
+#map {
+    height: 75%;
+  }
+  html, body {
+    height: 75%;
+    margin: 0;
+    padding: 0;
+  }
+
