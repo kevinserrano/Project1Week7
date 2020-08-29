@@ -34,6 +34,7 @@ var myChart = new Chart(ctx, {
     }
   }
 });
+
 var toDoBtn = document.getElementById("addtodo");
 toDoBtn.addEventListener("click", function (event) {
   event.preventDefault();
@@ -49,6 +50,9 @@ toDoBtn.addEventListener("click", function (event) {
     addToList.append(addListEl);
     addListEl.append(btnEl);
     btnEl.innerHTML = "Map";
+
+var address = "1%20UTSA%20Circle%252C%20San%20Antonio%252C%20TX"
+
 
 var settings = {
   "async": true,
@@ -69,7 +73,11 @@ $.ajax(settings).done(function (response) {
   console.log(longitude);
 
   var location = {
+
     lat: latitude,
+
+    lat: latitute,
+
     lng: longitude
   };
 
@@ -84,5 +92,8 @@ $.ajax(settings).done(function (response) {
     });
   };
   initMap();
+
 });
+
+
 });
