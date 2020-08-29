@@ -1,6 +1,6 @@
 var ctx = $("#myChart");
 
-var complete = 0;
+var complete = 1;
 var incomplete = 0;
 var inProgress = 0;
 
