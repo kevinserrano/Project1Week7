@@ -1,6 +1,6 @@
 var ctx = $("#myChart");
 
-var complete = 1;
+var complete = 0;
 var incomplete = 0;
 var inProgress = 0;
 
@@ -28,11 +28,11 @@ var myChart = new Chart(ctx, {
 
 var toDoBtn = document.getElementById("addtodo");
 toDoBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  var addToDo = document.getElementById("add-to-do").value;
-  console.log(addToDo);
-    var commaReplace = addToDo.replace(/,/g,"%252C");
-    var fixedAddress = commaReplace.replace(/ /g,"%20");
+    event.preventDefault();
+    var addToDo = document.getElementById("add-to-do").value;
+    console.log(addToDo);
+    var commaReplace = addToDo.replace(/,/g, "%252C");
+    var fixedAddress = commaReplace.replace(/ /g, "%20");
     console.log(fixedAddress)
     var address = fixedAddress;
     var addToList = document.getElementById("to-do-list");
@@ -41,50 +41,42 @@ toDoBtn.addEventListener("click", function (event) {
     addToList.append(addListEl);
     addListEl.append(btnEl);
     btnEl.innerHTML = "Map";
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+            "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba"
+        }
+    }
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var latitude = response.results[0].geometry.location.lat
+        console.log(latitude);
+        var longitude = response.results[0].geometry.location.lng
+        console.log(longitude);
+        var location = {
+            lat: latitude,
+            lng: longitude
+        };
 
-var address = "1%20UTSA%20Circle%252C%20San%20Antonio%252C%20TX"
-
-
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
-  "method": "GET",
-  "headers": {
-    "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-    "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba"
-  }
-}
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
-  var latitude = response.results[0].geometry.location.lat
-  console.log(latitude);
-  var longitude = response.results[0].geometry.location.lng
-  console.log(longitude);
-
-  var location = {
-
-    lat: latitude,
-
-    lat: latitute,
-
-    lng: longitude
-  };
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      center: location,
-      zoom: 10,
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById("map"), {
+                center: location,
+                zoom: 10,
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        };
+        initMap();
     });
-    var marker = new google.maps.Marker({
-      position: location,
-      map: map
+
+
+    $(document).ready(function () {
+        $('.modal').modal();
     });
-  };
-  initMap();
-
-});
-
-
 });

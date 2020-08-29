@@ -32,121 +32,12 @@
 
 
 
-    <nav>
-        <div class="nav-wrapper">
-            <a href="" class="brand-logo">Welders Organizer</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Next Job</a></li>
-                <li><a href="badges.html"></a></li>
-                <li><a href="collapsible.html"></a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!--jQuery source-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!--chart source-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-        integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
-        crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col lg m8">
-                <div class="card">
-                    <div class="card-action" id="map"></div>
-
-                </div>
-            </div>
-
-            <div id="chart" class="col lg m4">
-                <div class="card">
-                    <canvas id="myChart" width="400" height="400"></canvas>
-                </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col md 4">
-                <input>
-                <a class="waves-effect waves-light btn">button</a>
-
-                <h4>To Do List</h4>
-                <ul class="toDo">
-
-                    <label>
-
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <span>Gather all equipment!</span>
-
-                    </label>
-                    <br>
-                    <label>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <span>Organize equipmentso that workspace is clean and safe!</span>
-
-                    </label> <br>
-                    <label>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <span>Take a before photo!</span>
-
-                    </label>
-                    <br>
-                    <label>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <span>Check tank levels and hoses for safety!</span>
-
-                    </label>
-                    <br>
-                    <label>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <span>Check gloves for tears and helmet for safety hazards!</span>
-
-                    </label>
-                    <br>
-                    <label>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <span>Gather all equipment</span>
-
-                    </label>
-                </ul>
-            </div>
-            <div class="col-lg-7">
-                <div id="notes">
-                    <h4>Notes on todays job!</h4>
-                    <textarea></textarea>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
 
 
 
     <nav>
         <div class="nav-wrapper">
-            <a href="" class="brand-logo">Welders Organizer</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Next Job</a></li>
-                <li><a href="badges.html"></a></li>
-                <li><a href="collapsible.html"></a></li>
-            </ul>
+            <a class="brand-logo">Welders Organizer</a>
         </div>
     </nav>
 
@@ -169,57 +60,125 @@
         <div class="row">
             <div class="col md 4">
                 <form>
-                    <input id = "add-to-do"></input>
-                    <p>Add Address. Format must be same as used by the national postal service of the country concerned.</p>
+                    <input id="add-to-do"></input>
+                    <p>Add Address. Format must be same as used by the national postal service of the country concerned.
+                    </p>
                     <p> i.e. 123 North Street, City, ST</p>
-                    <button id = "addtodo" class="waves-effect waves-light btn">Add To Do</button>
+                    <button id="addtodo" class="waves-effect waves-light btn">Add To Do</button>
                 </form>
-                
+
                 <h4>To Do List</h4>
-                <ul id = "to-do-list" class="toDo">
+                <ul id="to-do-list" class="toDo">
                     <li>
                         <button class="waves-effect waves-light btn complete">Complete</button>
                         <button class="waves-effect waves-light btn inprogress">In Progress</button>
                         <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        Gather all equipment!
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+                        Project 1
                     </li>
                     <li>
                         <button class="waves-effect waves-light btn complete">Complete</button>
                         <button class="waves-effect waves-light btn inprogress">In Progress</button>
                         <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        Organize equipment so that workspace is clean and safe!
-                    </li> 
-                    <li>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        Take a before photo!
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+                        Project 2
                     </li>
                     <li>
                         <button class="waves-effect waves-light btn complete">Complete</button>
                         <button class="waves-effect waves-light btn inprogress">In Progress</button>
                         <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        Check tank levels and hoses for safety!
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+                        Project 3
                     </li>
                     <li>
                         <button class="waves-effect waves-light btn complete">Complete</button>
                         <button class="waves-effect waves-light btn inprogress">In Progress</button>
                         <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        Check gloves for tears and helmet for safety hazards!
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+                        Project 4
                     </li>
                     <li>
                         <button class="waves-effect waves-light btn complete">Complete</button>
                         <button class="waves-effect waves-light btn inprogress">In Progress</button>
                         <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        Gather all equipment
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+                        Project 5
+                    </li>
+                    <li>
+                        <button class="waves-effect waves-light btn complete">Complete</button>
+                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
+                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+
+                        Project 6
                     </li>
                 </ul>
             </div>
             <div class="col-lg-7">
-                <div id="notes">
-                    <h4>Notes on todays job!</h4>
-                    <textarea></textarea>
-                </div>
+
+
+
+
             </div>
         </div>
 
