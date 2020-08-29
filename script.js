@@ -1,6 +1,6 @@
 var ctx = $("#myChart");
 
-var complete = 1;
+var complete = 0;
 var incomplete = 0;
 var inProgress = 0;
 
@@ -82,5 +82,10 @@ toDoBtn.addEventListener("click", function (event) {
             });
         };
         initMap();
+    });
+
+
+    $(document).ready(function () {
+        $('.modal').modal();
     });
 });
