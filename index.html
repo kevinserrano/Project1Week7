@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+
+
+
+
     <title>Welding Worklist</title>
-
-
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -17,12 +19,10 @@
     <!--Link to local css styling-->
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-
-
-
 
     <!--need this for the chart-->
 
@@ -139,9 +139,102 @@
 
 
 
+    <nav>
+        <div class="nav-wrapper">
+            <a href="" class="brand-logo">Welders Organizer</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Next Job</a></li>
+                <li><a href="badges.html"></a></li>
+                <li><a href="collapsible.html"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col lg m8">
+                <div class="card">
+                    <div class="card-action" id="map"></div>
+
+                </div>
+            </div>
+
+            <div id="chart" class="col lg m4">
+                <div class="card">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col md 4">
+                <form>
+                    <input id = "add-to-do"></input>
+                    <p>Add Address. Format must be same as used by the national postal service of the country concerned.</p>
+                    <p> i.e. 123 North Street, City, ST</p>
+                    <button id = "addtodo" class="waves-effect waves-light btn">Add To Do</button>
+                </form>
+                
+                <h4>To Do List</h4>
+                <ul id = "to-do-list" class="toDo">
+                    <li>
+                        <button class="waves-effect waves-light btn complete">Complete</button>
+                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
+                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+                        Gather all equipment!
+                    </li>
+                    <li>
+                        <button class="waves-effect waves-light btn complete">Complete</button>
+                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
+                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+                        Organize equipment so that workspace is clean and safe!
+                    </li> 
+                    <li>
+                        <button class="waves-effect waves-light btn complete">Complete</button>
+                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
+                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+                        Take a before photo!
+                    </li>
+                    <li>
+                        <button class="waves-effect waves-light btn complete">Complete</button>
+                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
+                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+                        Check tank levels and hoses for safety!
+                    </li>
+                    <li>
+                        <button class="waves-effect waves-light btn complete">Complete</button>
+                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
+                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+                        Check gloves for tears and helmet for safety hazards!
+                    </li>
+                    <li>
+                        <button class="waves-effect waves-light btn complete">Complete</button>
+                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
+                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+                        Gather all equipment
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-7">
+                <div id="notes">
+                    <h4>Notes on todays job!</h4>
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
+
+    <!--chart source-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+        integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+        crossorigin="anonymous"></script>
+
+
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVkRUo11j1MN8Iu_9d7Ru_NNXWARb_MdA"></script>
 
 </body>
