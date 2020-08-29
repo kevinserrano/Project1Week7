@@ -24,15 +24,6 @@ var myChart = new Chart(ctx, {
       borderWidth: 2
     }]
   },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
 });
 
 var toDoBtn = document.getElementById("addtodo");
