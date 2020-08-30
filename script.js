@@ -74,4 +74,9 @@ toDoBtn.addEventListener("click", function (event) {
         };
         initMap();
     });
+
+
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
 });

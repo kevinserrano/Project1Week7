@@ -50,7 +50,8 @@ textarea {
 
 .complete,
 .inprogress,
-.incomplete {
+.incomplete,
+.modal-trigger {
     color: black;
     border: black;
     border-style: solid;
