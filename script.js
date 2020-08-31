@@ -7,6 +7,7 @@ var inProgress = 0;
 
 
 
+
 $(document).ready(function () {
 
     $("button").on("click", function () {
@@ -52,7 +53,8 @@ $(document).ready(function () {
         });
     });
 
-});
+
+
 
 var toDoBtn = document.getElementById("addtodo");
 toDoBtn.addEventListener("click", function (event) {
@@ -101,5 +103,10 @@ toDoBtn.addEventListener("click", function (event) {
             });
         };
         initMap();
+    });
+
+
+    $(document).ready(function () {
+        $('.modal').modal();
     });
 });
