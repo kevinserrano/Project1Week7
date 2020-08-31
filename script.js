@@ -3,23 +3,30 @@ var ctx = $("#myChart");
 var complete = 0;
 var incomplete = 0;
 var inProgress = 0;
-var completeButton = $(".complete");
+
 
 
 
 $(document).ready(function () {
 
-    $(completeButton).on("click", function () {
-        if (completeButton === true) {
+    $("button").on("click", function () {
+
+        if (this.classList.contains("complete")) {
+            console.log("complete clicked");
             complete++;
+        } else if (this.classList.contains("incomplete")) {
+            incomplete++;
+        } else if (this.classList.contains("inprogress")) {
+            inProgress++
         }
+
         var myChart = new Chart(ctx, {
             type: "pie",
             data: {
                 labels: ["Complete", "In Progress", "In Complete"],
                 datasets: [{
                     label: "Tasks Completion Status",
-                    data: [complete++, incomplete++, inProgress++],
+                    data: [complete, inProgress, incomplete],
                     backgroundColor: [
                         "hsl(186, 100%, 50%)",
                         "hsl(60, 100%, 85%)",
