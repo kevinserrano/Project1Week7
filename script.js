@@ -10,7 +10,9 @@ var completeButton = $(".complete");
 $(document).ready(function () {
 
     $(completeButton).on("click", function () {
-
+        if (completeButton === true) {
+            complete++;
+        }
         var myChart = new Chart(ctx, {
             type: "pie",
             data: {
