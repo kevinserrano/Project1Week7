@@ -12,6 +12,8 @@ $(document).ready(function () {
 
 
 
+
+
     $(document).on("click", "button", function () {
 
         if (this.classList.contains("complete")) {
@@ -57,72 +59,72 @@ $(document).ready(function () {
         });
     });
 
-});
 
-var toDoBtn = document.getElementById("addtodo");
-toDoBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    var addToDo = document.getElementById("add-to-do").value;
-    console.log(addToDo);
-    var commaReplace = addToDo.replace(/,/g, "%252C");
-    var fixedAddress = commaReplace.replace(/ /g, "%20");
-    console.log(fixedAddress)
-    var address = fixedAddress;
-    var addToList = document.getElementById("to-do-list");
-    var addListEl = document.createElement("li");
 
-    var compBtnEl = document.createElement("button");
-    compBtnEl.setAttribute("class", "waves-effect waves-light btn complete");
-    var incompBtnEl = document.createElement("button");
-    incompBtnEl.setAttribute("class", "waves-effect waves-light btn incomplete");
-    var inprogressBtnEl = document.createElement("button");
-    inprogressBtnEl.setAttribute("class", "waves-effect waves-light btn inprogress");
 
-    addToList.append(addListEl);
-    addListEl.append(compBtnEl);
-    addListEl.append(incompBtnEl);
-    addListEl.append(inprogressBtnEl);
-    addListEl.append(addToDo);
-    compBtnEl.innerHTML = "Complete";
-    incompBtnEl.innerHTML = "Incomplete";
-    inprogressBtnEl.innerHTML = "In Progress";
+    var toDoBtn = document.getElementById("addtodo");
+    toDoBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        var addToDo = document.getElementById("add-to-do").value;
+        console.log(addToDo);
+        var commaReplace = addToDo.replace(/,/g, "%252C");
+        var fixedAddress = commaReplace.replace(/ /g, "%20");
+        console.log(fixedAddress)
+        var address = fixedAddress;
+        var addToList = document.getElementById("to-do-list");
+        var addListEl = document.createElement("li");
 
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-            "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba"
+        var compBtnEl = document.createElement("button");
+        compBtnEl.setAttribute("class", "waves-effect waves-light btn complete");
+        var incompBtnEl = document.createElement("button");
+        incompBtnEl.setAttribute("class", "waves-effect waves-light btn incomplete");
+        var inprogressBtnEl = document.createElement("button");
+        inprogressBtnEl.setAttribute("class", "waves-effect waves-light btn inprogress");
+
+        addToList.append(addListEl);
+        addListEl.append(compBtnEl);
+        addListEl.append(incompBtnEl);
+        addListEl.append(inprogressBtnEl);
+        addListEl.append(addToDo);
+        compBtnEl.innerHTML = "Complete";
+        incompBtnEl.innerHTML = "Incomplete";
+        inprogressBtnEl.innerHTML = "In Progress";
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+                "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba"
+            }
         }
-    }
 
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-        var latitude = response.results[0].geometry.location.lat
-        console.log(latitude);
-        var longitude = response.results[0].geometry.location.lng
-        console.log(longitude);
-        var location = {
-            lat: latitude,
-            lng: longitude
-        };
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            var latitude = response.results[0].geometry.location.lat
+            console.log(latitude);
+            var longitude = response.results[0].geometry.location.lng
+            console.log(longitude);
+            var location = {
+                lat: latitude,
+                lng: longitude
+            };
 
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById("map"), {
-                center: location,
-                zoom: 12,
-            });
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        };
-        initMap();
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById("map"), {
+                    center: location,
+                    zoom: 12,
+                });
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            };
+            initMap();
+        });
+
+
     });
-
-
-
 
 });
