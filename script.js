@@ -47,11 +47,11 @@ toDoBtn.addEventListener("click", function (event) {
     var addToList = document.getElementById("to-do-list");
     var addListEl = document.createElement("li");
     var compBtnEl = document.createElement("button");
-    compBtnEl.setAttribute("class", "waves-effect waves-ligjt btn complete");
+    compBtnEl.setAttribute("class", "waves-effect waves-light btn complete");
     var incompBtnEl = document.createElement("button");
-    incompBtnEl.setAttribute("class", "waves-effect waves-ligjt btn incomplete");
+    incompBtnEl.setAttribute("class", "waves-effect waves-light btn incomplete");
     var inprogressBtnEl = document.createElement("button");
-   inprogressBtnEl.setAttribute("class", "waves-effect waves-ligjt btn inprogress");
+   inprogressBtnEl.setAttribute("class", "waves-effect waves-light btn inprogress");
     addToList.append(addListEl);
     addListEl.append(compBtnEl);
     addListEl.append(incompBtnEl);
@@ -60,6 +60,11 @@ toDoBtn.addEventListener("click", function (event) {
     compBtnEl.innerHTML = "Complete";
     incompBtnEl.innerHTML = "Incomplete";
     inprogressBtnEl.innerHTML = "In Progress";
+    compBtnEl.addEventListener("click", function () {
+        console.log("complete clicked");
+        complete++;
+    });
+
     var settings = {
         "async": true,
         "crossDomain": true,
