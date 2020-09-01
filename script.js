@@ -67,10 +67,20 @@ toDoBtn.addEventListener("click", function (event) {
     var address = fixedAddress;
     var addToList = document.getElementById("to-do-list");
     var addListEl = document.createElement("li");
-    var btnEl = document.createElement("button");
+    var compBtnEl = document.createElement("button");
+    compBtnEl.setAttribute("class", "waves-effect waves-ligjt btn complete");
+    var incompBtnEl = document.createElement("button");
+    incompBtnEl.setAttribute("class", "waves-effect waves-ligjt btn incomplete");
+    var inprogressBtnEl = document.createElement("button");
+   inprogressBtnEl.setAttribute("class", "waves-effect waves-ligjt btn inprogress");
     addToList.append(addListEl);
-    addListEl.append(btnEl);
-    btnEl.innerHTML = "Map";
+    addListEl.append(compBtnEl);
+    addListEl.append(incompBtnEl);
+    addListEl.append(inprogressBtnEl);
+    addListEl.append(addToDo);
+    compBtnEl.innerHTML = "Complete";
+    incompBtnEl.innerHTML = "Incomplete";
+    inprogressBtnEl.innerHTML = "In Progress";
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -95,7 +105,7 @@ toDoBtn.addEventListener("click", function (event) {
         function initMap() {
             var map = new google.maps.Map(document.getElementById("map"), {
                 center: location,
-                zoom: 10,
+                zoom: 12,
             });
             var marker = new google.maps.Marker({
                 position: location,
