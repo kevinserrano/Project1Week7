@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col md 4">
                 <form>
-                    <input id="add-to-do"></input>
+                    <input id="add-to-do" placeholder="Job Site Address Here:"></input>
                     <p>Add Address. Format must be same as used by the national postal service of the country concerned.
                     </p>
                     <p> i.e. 123 North Street, City, ST</p>
@@ -69,116 +69,29 @@
 
                 <h4>To Do List</h4>
                 <ul id="to-do-list" class="toDo">
-                    <li>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
-                        </div>
-                        Project 1
-                    </li>
-                    <li>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
-                        </div>
-                        Project 2
-                    </li>
-                    <li>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
-                        </div>
-                        Project 3
-                    </li>
-                    <li>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
-                        </div>
-                        Project 4
-                    </li>
-                    <li>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
-                        </div>
-                        Project 5
-                    </li>
-                    <li>
-                        <button class="waves-effect waves-light btn complete">Complete</button>
-                        <button class="waves-effect waves-light btn inprogress">In Progress</button>
-                        <button class="waves-effect waves-light btn incomplete">Incomplete</button>
+
+                    <form action="#">
+
+                        <p>
+                            <label>
+                                <input name="group1" type="radio" class="complete" />
+                                <span>Complete</span>
+                            </label>
+                            <label>
+                                <input name="group1" type="radio" class="inprogress" />
+                                <span>In Progress</span>
+                            </label>
+                        </p>
 
 
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Notes</a>
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
-                        </div>
-
-                        Project 6
-                    </li>
+                    </form>
 
                 </ul>
-            </div>
-            <div class="col-lg-7">
 
+            </div>
+            <div class=" card col-lg-7 ">
+                <h4 class="completeheader">Completed Jobs :</h4>
+                <div class="dropjobsdone"></div>
 
 
 

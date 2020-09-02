@@ -14,11 +14,6 @@
     font-family: cursive;
 }
 
-textarea {
-    background-color: rgb(244, 245, 250);
-    height: 200px;
-    width: 510px;
-}
 
 #map {
     width: 100%;
@@ -46,4 +41,16 @@ textarea {
     border: black;
     border-style: solid;
     border-width: 1px;
+}
+
+.col-lg-7 {
+
+    width: 39%;
+    margin-left: 60%;
+    height: 400px;
+
+}
+
+.completeheader {
+    text-align: center;
 }
