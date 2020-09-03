@@ -5,7 +5,7 @@ $(document).ready(function () {
     var ctx = $("#myChart");
 
     var complete = 0;
-    var incomplete = 1;
+    var incomplete = 0;
     var inProgress = 0;
 
 
@@ -39,17 +39,9 @@ $(document).ready(function () {
             }
         }
     });
-
-
-
-
-
-
-
-
+    
     var projects = [];
     var addresses = [];
-
 
     $(document).on("click", "input", function () {
 
@@ -63,19 +55,10 @@ $(document).ready(function () {
             inProgress++;
             complete = 0;
             incomplete = 0;
-
         } else {
-
-
-        } else if (this.classList.contains("inprogress")) {
-            console.log("incomplete clicked")
-            inProgress++
-        } else if (this.classList.contains("nothing")) {
 
             return;
         }
-
-
 
         var myChart = new Chart(ctx, {
             type: "pie",
@@ -110,49 +93,8 @@ $(document).ready(function () {
 
 
     });
-
-
-
-
-
+    
     var toDoBtn = document.getElementById("addtodo");
-    toDoBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        var addToDo = document.getElementById("add-to-do").value;
-        console.log(addToDo);
-        var commaReplace = addToDo.replace(/,/g, "%252C");
-        var fixedAddress = commaReplace.replace(/ /g, "%20");
-        console.log(fixedAddress)
-        var address = fixedAddress;
-        var addToList = document.getElementById("to-do-list");
-        var addListEl = document.createElement("li");
-
-        //var compBtnEl = document.createElement("button");
-        //compBtnEl.setAttribute("class", "waves-effect waves-light btn complete");
-        //var incompBtnEl = document.createElement("button");
-        //incompBtnEl.setAttribute("class", "waves-effect waves-light btn incomplete");
-        //var inprogressBtnEl = document.createElement("button");
-        //inprogressBtnEl.setAttribute("class", "waves-effect waves-light btn inprogress");
-
-        addToList.append(addListEl);
-        // addListEl.append(compBtnEl);
-        //addListEl.append(incompBtnEl);
-        //addListEl.append(inprogressBtnEl);
-        addListEl.append(addToDo);
-        //compBtnEl.innerHTML = "Complete";
-        //incompBtnEl.innerHTML = "Incomplete";
-        // inprogressBtnEl.innerHTML = "In Progress";
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-                "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba"
-
-        var toDoBtn = document.getElementById("addtodo");
         toDoBtn.addEventListener("click", function (event) {
             event.preventDefault();
 
@@ -173,26 +115,31 @@ $(document).ready(function () {
             var addToList = document.getElementById("to-do-list");
             var addListEl = document.createElement("li");
     
-            var compBtnEl = document.createElement("button");
-            compBtnEl.setAttribute("class", "waves-effect waves-light btn complete");
+            var formEl = document.createElement("form");
+            var labelEl = document.createElement("label");
+            var spanEl = document.createElement("span");
+
+            var compEl = document.createElement("input");
+            compEl.setAttribute("class", "complete");
+            compEl.setAttribute("type", "radio");
+            compEl.setAttribute("name","group1")
     
-            var inprogressBtnEl = document.createElement("button");
-            inprogressBtnEl.setAttribute("class", "waves-effect waves-light btn inprogress");
-    
-            var modalBtnEl = document.createElement("button");
-            modalBtnEl.setAttribute("class", "waves-effect waves-light btn");
+            var incompEl = document.createElement("input");
+            compEl.setAttribute("class", "inprogress");
+            incompEl.setAttribute("type", "radio");
+            incompEl.setAttribute("name","group1")
             
             addToList.append(addListEl);
-            addListEl.append(compBtnEl);
-            addListEl.append(inprogressBtnEl);
-            addListEl.append(modalBtnEl);
-            addListEl.append(projectName);
-            
-            compBtnEl.innerHTML = "Complete";
-            inprogressBtnEl.innerHTML = "In Progress";
-            modalBtnEl.innerHTML = "Map";
-    
-            var settings = {
+            addListEl.append(formEl);
+            formEl.append(labelEl);
+            labelEl.append(compEl);
+            labelEl.append(spanEl);
+            spanEl.innerHTML = "Complete";
+            labelEl.append(incompEl);
+            labelEl.append(spanEl);
+            spanEl.innerHTML = "Inprogress";
+
+            /*var settings = {
                 "async": true,
                 "crossDomain": true,
                 "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
@@ -225,7 +172,7 @@ $(document).ready(function () {
                     });
                 };
                 initMap();
-            });
+            });*/
         });
         
     function getProjects (){
@@ -240,24 +187,27 @@ $(document).ready(function () {
             var addToList = document.getElementById("to-do-list");
             var addListEl = document.createElement("li");
 
-            var compBtnEl = document.createElement("button");
-            compBtnEl.setAttribute("class", "waves-effect waves-light btn complete");
+            var formEl = document.createElement("form");
+            var labelEl = document.createElement("label");
+            var spanEl = document.createElement("span");
+
+            var compEl = document.createElement("input");
+            compEl.setAttribute("class", "complete");
+            compEl.setAttribute("type", "radio");
+            compEl.setAttribute("name","group1")
     
-            var inprogressBtnEl = document.createElement("button");
-            inprogressBtnEl.setAttribute("class", "waves-effect waves-light btn inprogress");
-    
-            var modalBtnEl = document.createElement("button");
-            modalBtnEl.setAttribute("class", "waves-effect waves-light btn");
+            var incompEl = document.createElement("input");
+            incompEl.setAttribute("type", "radio");
+            incompEl.setAttribute("name","group1")
             
             addToList.append(addListEl);
-            addListEl.append(compBtnEl);
-            addListEl.append(inprogressBtnEl);
-            addListEl.append(modalBtnEl);
-            addListEl.append(storedProjects);
+            addListEl.append(formEl);
+            formEl.append(labelEl);
+            labelEl.append(compEl);
+            labelEl.append(spanEl);
+
+            spanEl.innerHTML = "Complete";
             
-            compBtnEl.innerHTML = "Complete";
-            inprogressBtnEl.innerHTML = "In Progress";
-            modalBtnEl.innerHTML = "Map";
         }
     }
 });
