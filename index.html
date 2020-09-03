@@ -5,11 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
-
-
-
     <title>Welding Worklist</title>
 
     <!-- Compiled and minified CSS -->
@@ -17,23 +12,11 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--Link to local css styling-->
-
     <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-
-    <!--need this for the chart-->
-
-
-
-
-
-
-
-
-
 
     <nav>
         <div class="nav-wrapper">
@@ -43,17 +26,41 @@
 
     <div class="container">
         <div class="row">
-            <div class="col lg m8">
+            <div class="col lg m6">
+                <form>
+                    <div class="input-field col s6">
+                        <input id="project-name" class="validate" type="text">
+                        <label for="project-name">Project Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="address" class="validate" type="text">
+                        <label for="address">Address</label>
+                    </div>
+                    <button id="addtodo" class="waves-effect waves-light btn nothing">Add To Do</button>
+                </form>
+                <h4>To Do List:</h4>
+                <ul id="to-do-list">
+                </ul>
+            </div>
+            <!--for map-->
+            <div class="col lg m6">
                 <div class="card">
+                    <h4>Location:</h4>
                     <div class="card-action" id="map"></div>
-
                 </div>
             </div>
-
-            <div id="chart" class="col lg m4">
+        </div>
+        <div class="row">
+            <ul id="completed-items" class="col lg m6">
+                <h4>Completed:</h4>
+            </ul>
+            <!--for chart-->
+            <div id="chart" class="col lg m6">
                 <div class="card">
+                    <h4>Progress:</h4>
                     <canvas id="myChart" width="400" height="400"></canvas>
                 </div>
+
 
             </div>
         </div>
@@ -95,9 +102,9 @@
 
 
 
+
             </div>
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -109,12 +116,8 @@
         integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
         crossorigin="anonymous"></script>
 
-
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVkRUo11j1MN8Iu_9d7Ru_NNXWARb_MdA"></script>
 
 </body>
-
-
-
 
 </html>
