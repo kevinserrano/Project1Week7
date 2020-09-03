@@ -11,6 +11,7 @@
     font-family: cursive;
 }
 
+
 #map {
     background-color: white;
     height: 410px;
@@ -27,6 +28,25 @@
 .complete,
 .inprogress {
     color: black;
+
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.col-lg-7 {
+
+    width: 39%;
+    margin-left: 60%;
+    height: 400px;
+
+}
+
+.completeheader {
+    text-align: center;
+}
+
     margin-right: 5px;
     margin-bottom: 5px;
 }
+
