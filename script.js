@@ -66,7 +66,7 @@ $(document).ready(function () {
         var myChart = new Chart(ctx, {
             type: "pie",
             data: {
-                labels: ["Complete", "In Progress", "In Complete"],
+                labels: ["Complete", "In Progress", "Incomplete"],
                 datasets: [{
                     label: "Tasks Completion Status",
                     data: [complete, inProgress, incomplete],
@@ -96,6 +96,12 @@ $(document).ready(function () {
 
 
     });
+    //function for drop-down but not working. it is set to browser default now.
+    //document.addEventListener('DOMContentLoaded', function() {
+          //var elems = document.querySelectorAll('select');
+          //var instances = M.FormSelect.init(elems, options);
+        //});
+
     var toDoBtn = document.getElementById("addtodo");
     toDoBtn.addEventListener("click", function (event) {
         event.preventDefault();
@@ -125,7 +131,7 @@ $(document).ready(function () {
         compEl.setAttribute("type", "radio");
         compEl.setAttribute("name", "group1")
         var incompEl = document.createElement("input");
-        compEl.setAttribute("class", "inprogress");
+        incompEl.setAttribute("class", "inprogress");
         incompEl.setAttribute("type", "radio");
         incompEl.setAttribute("name", "group1")
         addToList.append(addListEl);
@@ -136,8 +142,8 @@ $(document).ready(function () {
         spanEl.innerHTML = "Complete";
         labelEl.append(incompEl);
         labelEl.append(spanEl);
-        spanEl.innerHTML = "Inprogress";
-        /*var settings = {
+        spanEl.innerHTML = "In progress";
+        var settings = {
             "async": true,
             "crossDomain": true,
             "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
@@ -170,7 +176,7 @@ $(document).ready(function () {
                 });
             };
             initMap();
-        });*/
+        });
     });
 
     function getProjects() {
