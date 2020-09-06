@@ -36,12 +36,18 @@
                         <input id="address" class="validate" type="text">
                         <label for="address">Address</label>
                     </div>
-                    <button id="addtodo" class="waves-effect waves-light btn nothing">Add To Do</button>
+                    <button id="addtodo" class="waves-effect waves-light btn nothing">Add Project</button>
                 </form>
-                <h4>To Do List:</h4>
-                <ul id="to-do-list">
 
-                </ul>
+                <h4>Project List:</h4>
+                <table id="to-do-list">
+                    <th>Project Name</th>
+                    <th>Incomplete</th>
+                    <th>In Progress</th>
+                    <th>Complete</th>
+
+                </table>
+
             </div>
             <!--for map-->
             <div class="col lg m6">
@@ -49,13 +55,8 @@
                     <h4>Location:</h4>
                     <div class="card-action" id="map"></div>
                 </div>
+
             </div>
-        </div>
-        <div class="row">
-            <ul id="completed-items" class="col lg m6">
-                <h4>Completed:</h4>
-            </ul>
-            <!--for chart-->
             <div id="chart" class="col lg m6">
                 <div class="card">
                     <h4>Progress:</h4>
@@ -64,11 +65,19 @@
 
             </div>
         </div>
+        <div class="row">
+            <ul id="completed-items" class="col lg m6">
+                <h4>Completed:</h4>
+                <li id="completed-drop"></li>
+            </ul>
+            <!--for chart-->
 
-
-
-            </div>
         </div>
+
+
+
+    </div>
+    </div>
 
 
 

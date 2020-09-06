@@ -4,10 +4,11 @@ $(document).ready(function () {
 
     var ctx = $("#myChart");
 
-    var complete = 0;
-    var incomplete = 0;
-    var inProgress = 0;
-
+    var complete;
+    var incomplete;
+    var inProgress;
+    var projects;
+    var status;
 
 
     var myChart = new Chart(ctx, {
@@ -40,26 +41,61 @@ $(document).ready(function () {
             }
         }
     });
-
-
-    var projects = [];
+    // function to  set variables to active when clicked
+    function countStatus() {
+        complete = $("button.complete.active").length
+        incomplete = $("button.incomplete.active").length
+        inProgress = $("button.inprogress.active").length
+    }
     var addresses = [];
 
-    $(document).on("click", "input", function () {
+
+    $(document).on("click", "button", function () {
 
         if (this.classList.contains("complete")) {
             console.log("complete clicked");
-            complete++;
+            activeElement = $(this);
+            setActive(activeElement);
+            countStatus();
+            updateStatus("complete", activeElement)
 
-            inProgress = 0;
-            incomplete = 0;
         } else if (this.classList.contains("inprogress")) {
-            inProgress++;
-            complete = 0;
-            incomplete = 0;
-        } else {
+            activeElement = $(this);
+            setActive(activeElement);
+            countStatus();
+            updateStatus("inprogress", activeElement)
 
-            return;
+        } else if (this.classList.contains("incomplete")) {
+            activeElement = $(this);
+            setActive(activeElement);
+            countStatus();
+            updateStatus("incomplete", activeElement)
+        } else {
+            countStatus()
+
+
+        }
+
+
+
+        function setActive(activeElement) {
+
+            activeElement.parent().parent().children().each(function () {
+
+                $(this).children().removeClass("active")
+
+
+            });
+
+            activeElement.toggleClass("active");
+
+
+        }
+
+        function updateStatus(Status, activeElement) {
+            var index = activeElement.parent().parent().index() - 1;
+            status[index] = Status;
+            localStorage.setItem("status", status);
 
         }
 
@@ -113,103 +149,149 @@ $(document).ready(function () {
         localStorage.setItem("project", projects);
         console.log(projects);
 
+        status.push("incomplete");
+        localStorage.setItem("status", status);
+
         var addToList = document.getElementById("to-do-list");
-        var addListEl = document.createElement("li");
+        var row = $("<tr>");
+        var proName = $("<td>");
+        var tdComp = $("<td>");
+        var tdInprog = $("<td>");
+        var tdIncomp = $("<td>");
+        var compEl = $("<button>");
+        var inprogEl = $("<button>");
+        var incompEl = $("<button>");
+        var span = $("<span>");
 
-        var formEl = document.createElement("form");
-        var labelEl = document.createElement("label");
-        var spanEl = document.createElement("span");
+        $(span).html(projectName);
+        $(compEl).attr("class", "btn complete").html("Complete");
+        $(inprogEl).attr("class", "btn inprogress").html("In Progress");
+        $(incompEl).attr("class", "btn incomplete active").html("Incomplete");
 
-        var compEl = document.createElement("input");
-        compEl.setAttribute("class", "complete");
-        compEl.setAttribute("type", "radio");
-        compEl.setAttribute("name", "group1")
-        var incompEl = document.createElement("input");
-        compEl.setAttribute("class", "inprogress");
-        incompEl.setAttribute("type", "radio");
-        incompEl.setAttribute("name", "group1")
-        addToList.append(addListEl);
-        addListEl.append(formEl);
-        formEl.append(labelEl);
-        labelEl.append(compEl);
-        labelEl.append(spanEl);
-        spanEl.innerHTML = "Complete";
-        labelEl.append(incompEl);
-        labelEl.append(spanEl);
-        spanEl.innerHTML = "Inprogress";
-        /*var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-                "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba",
-            }
 
-        }
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-            var latitude = response.results[0].geometry.location.lat
-            console.log(latitude);
-            var longitude = response.results[0].geometry.location.lng
-            console.log(longitude);
-            var location = {
-                lat: latitude,
-                lng: longitude
-            };
 
-            function initMap() {
-                var map = new google.maps.Map(document.getElementById("map"), {
-                    center: location,
-                    zoom: 12,
-                });
-                var marker = new google.maps.Marker({
-                    position: location,
-                    map: map
-                });
-            };
-            initMap();
-        });*/
+
+
+        $(proName).append(span);
+        $(tdComp).append(compEl);
+        $(tdInprog).append(inprogEl);
+        $(tdIncomp).append(incompEl);
+
+        $(row).append(proName);
+        $(row).append(tdIncomp);
+        $(row).append(tdInprog);
+        $(row).append(tdComp);
+
+        $(addToList).append(row);
+
+        /* var settings = {
+             "async": true,
+             "crossDomain": true,
+             "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
+             "method": "GET",
+             "headers": {
+                 "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+                 "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba",
+             }
+
+         }
+         $.ajax(settings).done(function (response) {
+             console.log(response);
+             var latitude = response.results[0].geometry.location.lat
+             console.log(latitude);
+             var longitude = response.results[0].geometry.location.lng
+             console.log(longitude);
+             var location = {
+                 lat: latitude,
+                 lng: longitude
+             };
+
+             function initMap() {
+                 var map = new google.maps.Map(document.getElementById("map"), {
+                     center: location,
+                     zoom: 12,
+                 });
+                 var marker = new google.maps.Marker({
+                     position: location,
+                     map: map
+                 });
+             };
+             initMap();
+         });*/
     });
 
     function getProjects() {
         if (localStorage.getItem("project") === null && localStorage.getItem("address") === null) {
-
-            console.log("No stored items")
+            projects = [];
+            status = [];
         } else {
-            var storedProjects = localStorage.getItem("project");
-            var storedAddresses = localStorage.getItem("address");
-            var commaReplace = storedAddresses.replace(/%252C/g, ",");
-            var fixedAddress = commaReplace.replace(/%20/g, " ");
 
-            var addToList = document.getElementById("to-do-list");
-            var addListEl = document.createElement("li");
+            projects = localStorage.getItem("project").split(",").map(x => {
+                return x
+            });
+            addresses = localStorage.getItem("address").split(",").map(x => {
+                return x
 
-            var formEl = document.createElement("form");
-            var labelEl = document.createElement("label");
-            var spanEl = document.createElement("span");
+            });
 
-            var compEl = document.createElement("input");
-            compEl.setAttribute("class", "complete");
-            compEl.setAttribute("type", "radio");
-            compEl.setAttribute("name", "group1")
+            status = localStorage.getItem("status").split(",").map(x => {
+                return x
 
-            var incompEl = document.createElement("input");
-            incompEl.setAttribute("type", "radio");
-            incompEl.setAttribute("name", "group1")
+            });
 
-            addToList.append(addListEl);
-            addListEl.append(formEl);
-            formEl.append(labelEl);
-            labelEl.append(compEl);
-            labelEl.append(spanEl);
+            var addToList = $("#to-do-list");
+            var completeStatus;
+            var incompleteStatus;
+            var inprogStatus;
+            for (var i = 0; i < projects.length; i++) {
 
-            spanEl.innerHTML = "Complete";
+                var row = $("<tr>");
+                var proName = $("<td>");
+                var tdComp = $("<td>");
+                var tdInprog = $("<td>");
+                var tdIncomp = $("<td>");
+                var compEl = $("<button>");
+                var inprogEl = $("<button>");
+                var incompEl = $("<button>");
+                var span = $("<span>");
 
-            addToList.append(addListEl);
+                if (status[i] === "complete") {
+                    completeStatus = "btn complete active"
+                    incompleteStatus = "btn incomplete"
+                    inprogStatus = "btn inprogress"
+                } else if (status[i] === "incomplete") {
+                    completeStatus = "btn complete"
+                    incompleteStatus = "btn incomplete active"
+                    inprogStatus = "btn inprogress"
+                } else {
+                    completeStatus = "btn complete"
+                    incompleteStatus = "btn incomplete"
+                    inprogStatus = "btn inprogress active"
+                }
 
-            addListEl.append(storedProjects);
+
+                $(span).html(projects[i]);
+                $(compEl).attr("class", completeStatus).html("Complete");
+                $(inprogEl).attr("class", inprogStatus).html("In Progress");
+                $(incompEl).attr("class", incompleteStatus).html("Incomplete");
+
+
+
+                $(proName).append(span);
+                $(tdComp).append(compEl);
+                $(tdInprog).append(inprogEl);
+                $(tdIncomp).append(incompEl);
+
+                $(row).append(proName);
+                $(row).append(tdIncomp);
+                $(row).append(tdInprog);
+                $(row).append(tdComp);
+
+                $(addToList).append(row);
+                countStatus();
+
+
+            }
 
 
         }
