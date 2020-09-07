@@ -18,6 +18,7 @@
     height: 410px;
 }
 
+.location,
 .incomplete,
 .complete,
 .inprogress {
@@ -46,4 +47,8 @@
 
 .active {
     background-color: lightgreen;
+}
+
+#chart {
+    float: right;
 }

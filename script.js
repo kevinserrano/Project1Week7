@@ -8,6 +8,7 @@ $(document).ready(function () {
     var incomplete;
     var inProgress;
     var projects;
+    // this is an array to hold the status of each project
     var status;
 
 
@@ -49,14 +50,22 @@ $(document).ready(function () {
     }
     var addresses = [];
 
+    function updateChart() {
+        myChart.data.datasets[0].data = [complete, inProgress, incomplete];
+        myChart.update();
+    }
 
+    // adding click function to buttons and updating status and count with functions
     $(document).on("click", "button", function () {
 
         if (this.classList.contains("complete")) {
             console.log("complete clicked");
             activeElement = $(this);
+
             setActive(activeElement);
+            //function call to update totals for the chart
             countStatus();
+            //function call to update status
             updateStatus("complete", activeElement)
 
         } else if (this.classList.contains("inprogress")) {
@@ -77,7 +86,7 @@ $(document).ready(function () {
         }
 
 
-
+        // runs throug
         function setActive(activeElement) {
 
             activeElement.parent().parent().children().each(function () {
@@ -99,36 +108,7 @@ $(document).ready(function () {
 
         }
 
-        var myChart = new Chart(ctx, {
-            type: "pie",
-            data: {
-                labels: ["Complete", "In Progress", "In Complete"],
-                datasets: [{
-                    label: "Tasks Completion Status",
-                    data: [complete, inProgress, incomplete],
-                    backgroundColor: [
-                        "hsl(186, 100%, 50%)",
-                        "hsl(60, 100%, 85%)",
-                        "hsl(1, 100%, 70%)",
-                    ],
-                    borderColor: [
-                        "hsl(240, 100%, 50%)",
-                        "hsl(60, 100%, 50%)",
-                        "hsl(0, 100%, 50%)",
-                    ],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
+        updateChart();
 
 
     });
@@ -148,7 +128,7 @@ $(document).ready(function () {
         projects.push(projectName);
         localStorage.setItem("project", projects);
         console.log(projects);
-
+        // this is so that any additional project added starts as incomplete
         status.push("incomplete");
         localStorage.setItem("status", status);
 
@@ -158,15 +138,18 @@ $(document).ready(function () {
         var tdComp = $("<td>");
         var tdInprog = $("<td>");
         var tdIncomp = $("<td>");
+        var location = $("<td>");
         var compEl = $("<button>");
         var inprogEl = $("<button>");
         var incompEl = $("<button>");
+        var locationBtn = $("<button>");
         var span = $("<span>");
 
         $(span).html(projectName);
         $(compEl).attr("class", "btn complete").html("Complete");
         $(inprogEl).attr("class", "btn inprogress").html("In Progress");
         $(incompEl).attr("class", "btn incomplete active").html("Incomplete");
+        $(locationBtn).attr("class", "btn location").html("Location");
 
 
 
@@ -176,11 +159,13 @@ $(document).ready(function () {
         $(tdComp).append(compEl);
         $(tdInprog).append(inprogEl);
         $(tdIncomp).append(incompEl);
+        $(location).append(locationBtn);
 
         $(row).append(proName);
         $(row).append(tdIncomp);
         $(row).append(tdInprog);
         $(row).append(tdComp);
+        $(row).append(location);
 
         $(addToList).append(row);
 
@@ -250,6 +235,8 @@ $(document).ready(function () {
                 var tdComp = $("<td>");
                 var tdInprog = $("<td>");
                 var tdIncomp = $("<td>");
+                var location = $("<td>");
+                var locationBtn = $("<button>");
                 var compEl = $("<button>");
                 var inprogEl = $("<button>");
                 var incompEl = $("<button>");
@@ -274,6 +261,7 @@ $(document).ready(function () {
                 $(compEl).attr("class", completeStatus).html("Complete");
                 $(inprogEl).attr("class", inprogStatus).html("In Progress");
                 $(incompEl).attr("class", incompleteStatus).html("Incomplete");
+                $(locationBtn).attr("class", "btn location").html("Location");
 
 
 
@@ -281,11 +269,15 @@ $(document).ready(function () {
                 $(tdComp).append(compEl);
                 $(tdInprog).append(inprogEl);
                 $(tdIncomp).append(incompEl);
+                $(location).append(locationBtn);
+
 
                 $(row).append(proName);
                 $(row).append(tdIncomp);
                 $(row).append(tdInprog);
                 $(row).append(tdComp);
+                $(row).append(location);
+
 
                 $(addToList).append(row);
                 countStatus();
