@@ -3,7 +3,7 @@ Welding Worklist
 
 ## Description
 
-An application used to assist a small business owner of a welding company by keeping track of projects, locations of projects and progress of projects. HTML, CSS, jQuery and JavaScript were used to help create the applicaiton and dymnamically display project name, status, location and overall progress. Future goals of this project are to have the map display all locations and markers at one time, be able to add notes and other pertinent information to the projects using modals and make display more user friendly for mobile applications. 
+An application used to assist a small business owner of a welding company by keeping track of projects, locations of projects and progress of projects. HTML, CSS, jQuery and JavaScript were used to help create the applicaiton and dynamically display project name, status, location and overall progress. Future goals of this project are to have the map display all locations and markers at one time, be able to add notes and other pertinent information to the projects using modals and make display more user friendly for mobile applications. 
 
 ## Installation
 
@@ -26,6 +26,8 @@ Google Maps - https://cloud.google.com/maps-platform/maps
 Google Maps Geocoding - https://rapidapi.com/googlecloud/api/google-maps-geocoding
 
 Chart.js - https://www.chartjs.org/
+
+Materialize - https://materializecss.com/
 
 jQuery - https://api.jquery.com/
 
