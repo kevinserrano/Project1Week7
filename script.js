@@ -79,11 +79,12 @@ $(document).ready(function () {
             setActive(activeElement);
             countStatus();
             updateStatus("incomplete", activeElement)
-        } else {
-            countStatus()
-
-
+        } else if (this.classList.contains("location")) {
+            i = $(this).parent().parent().index() - 1
+            getLocation(addresses[i])
         }
+
+
 
 
         // runs throug
@@ -169,40 +170,7 @@ $(document).ready(function () {
 
         $(addToList).append(row);
 
-        /* var settings = {
-             "async": true,
-             "crossDomain": true,
-             "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
-             "method": "GET",
-             "headers": {
-                 "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-                 "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba",
-             }
-
-         }
-         $.ajax(settings).done(function (response) {
-             console.log(response);
-             var latitude = response.results[0].geometry.location.lat
-             console.log(latitude);
-             var longitude = response.results[0].geometry.location.lng
-             console.log(longitude);
-             var location = {
-                 lat: latitude,
-                 lng: longitude
-             };
-
-             function initMap() {
-                 var map = new google.maps.Map(document.getElementById("map"), {
-                     center: location,
-                     zoom: 12,
-                 });
-                 var marker = new google.maps.Marker({
-                     position: location,
-                     map: map
-                 });
-             };
-             initMap();
-         });*/
+        getLocation(address);
     });
 
     function getProjects() {
@@ -287,6 +255,43 @@ $(document).ready(function () {
 
 
         }
+    }
+
+    function getLocation(address) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+                "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba",
+            }
+
+        }
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            var latitude = response.results[0].geometry.location.lat
+            console.log(latitude);
+            var longitude = response.results[0].geometry.location.lng
+            console.log(longitude);
+            var location = {
+                lat: latitude,
+                lng: longitude
+            };
+
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById("map"), {
+                    center: location,
+                    zoom: 12,
+                });
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            };
+            initMap();
+        });
     }
 
 });
