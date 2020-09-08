@@ -97,10 +97,10 @@ $(document).ready(function () {
 
     });
     //function for drop-down but not working. it is set to browser default now.
-    //document.addEventListener('DOMContentLoaded', function() {
-          //var elems = document.querySelectorAll('select');
-          //var instances = M.FormSelect.init(elems, options);
-        //});
+    /*$(document).ready(function(){
+      $("select").formSelect();
+
+    });*/
 
     var toDoBtn = document.getElementById("addtodo");
     toDoBtn.addEventListener("click", function (event) {
