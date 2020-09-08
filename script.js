@@ -4,10 +4,12 @@ $(document).ready(function () {
 
     var ctx = $("#myChart");
 
-    var complete = 0;
-    var incomplete = 0;
-    var inProgress = 0;
-
+    var complete;
+    var incomplete;
+    var inProgress;
+    var projects;
+    // this is an array to hold the status of each project
+    var status;
 
 
     var myChart = new Chart(ctx, {
@@ -40,59 +42,74 @@ $(document).ready(function () {
             }
         }
     });
-
-
-    var projects = [];
+    // function to  set variables to active when clicked
+    function countStatus() {
+        complete = $("button.complete.active").length
+        incomplete = $("button.incomplete.active").length
+        inProgress = $("button.inprogress.active").length
+    }
     var addresses = [];
 
-    $(document).on("click", "input", function () {
+    function updateChart() {
+        myChart.data.datasets[0].data = [complete, inProgress, incomplete];
+        myChart.update();
+    }
+
+    // adding click function to buttons and updating status and count with functions
+    $(document).on("click", "button", function () {
 
         if (this.classList.contains("complete")) {
             console.log("complete clicked");
-            complete++;
+            activeElement = $(this);
 
-            inProgress = 0;
-            incomplete = 0;
+            setActive(activeElement);
+            //function call to update totals for the chart
+            countStatus();
+            //function call to update status
+            updateStatus("complete", activeElement)
+
         } else if (this.classList.contains("inprogress")) {
-            inProgress++;
-            complete = 0;
-            incomplete = 0;
-        } else {
+            activeElement = $(this);
+            setActive(activeElement);
+            countStatus();
+            updateStatus("inprogress", activeElement)
 
-            return;
+        } else if (this.classList.contains("incomplete")) {
+            activeElement = $(this);
+            setActive(activeElement);
+            countStatus();
+            updateStatus("incomplete", activeElement)
+        } else if (this.classList.contains("location")) {
+            i = $(this).parent().parent().index() - 1
+            getLocation(addresses[i])
+        }
+
+
+
+
+        // runs throug
+        function setActive(activeElement) {
+
+            activeElement.parent().parent().children().each(function () {
+
+                $(this).children().removeClass("active")
+
+
+            });
+
+            activeElement.toggleClass("active");
+
 
         }
 
-        var myChart = new Chart(ctx, {
-            type: "pie",
-            data: {
-                labels: ["Complete", "In Progress", "In Complete"],
-                datasets: [{
-                    label: "Tasks Completion Status",
-                    data: [complete, inProgress, incomplete],
-                    backgroundColor: [
-                        "hsl(186, 100%, 50%)",
-                        "hsl(60, 100%, 85%)",
-                        "hsl(1, 100%, 70%)",
-                    ],
-                    borderColor: [
-                        "hsl(240, 100%, 50%)",
-                        "hsl(60, 100%, 50%)",
-                        "hsl(0, 100%, 50%)",
-                    ],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
+        function updateStatus(Status, activeElement) {
+            var index = activeElement.parent().parent().index() - 1;
+            status[index] = Status;
+            localStorage.setItem("status", status);
+
+        }
+
+        updateChart();
 
 
     });
@@ -112,32 +129,136 @@ $(document).ready(function () {
         projects.push(projectName);
         localStorage.setItem("project", projects);
         console.log(projects);
+        // this is so that any additional project added starts as incomplete
+        status.push("incomplete");
+        localStorage.setItem("status", status);
 
         var addToList = document.getElementById("to-do-list");
-        var addListEl = document.createElement("li");
+        var row = $("<tr>");
+        var proName = $("<td>");
+        var tdComp = $("<td>");
+        var tdInprog = $("<td>");
+        var tdIncomp = $("<td>");
+        var location = $("<td>");
+        var compEl = $("<button>");
+        var inprogEl = $("<button>");
+        var incompEl = $("<button>");
+        var locationBtn = $("<button>");
+        var span = $("<span>");
 
-        var formEl = document.createElement("form");
-        var labelEl = document.createElement("label");
-        var spanEl = document.createElement("span");
+        $(span).html(projectName);
+        $(compEl).attr("class", "btn complete").html("Complete");
+        $(inprogEl).attr("class", "btn inprogress").html("In Progress");
+        $(incompEl).attr("class", "btn incomplete active").html("Incomplete");
+        $(locationBtn).attr("class", "btn location").html("Location");
 
-        var compEl = document.createElement("input");
-        compEl.setAttribute("class", "complete");
-        compEl.setAttribute("type", "radio");
-        compEl.setAttribute("name", "group1")
-        var incompEl = document.createElement("input");
-        compEl.setAttribute("class", "inprogress");
-        incompEl.setAttribute("type", "radio");
-        incompEl.setAttribute("name", "group1")
-        addToList.append(addListEl);
-        addListEl.append(formEl);
-        formEl.append(labelEl);
-        labelEl.append(compEl);
-        labelEl.append(spanEl);
-        spanEl.innerHTML = "Complete";
-        labelEl.append(incompEl);
-        labelEl.append(spanEl);
-        spanEl.innerHTML = "Inprogress";
-        /*var settings = {
+
+
+
+
+        $(proName).append(span);
+        $(tdComp).append(compEl);
+        $(tdInprog).append(inprogEl);
+        $(tdIncomp).append(incompEl);
+        $(location).append(locationBtn);
+
+        $(row).append(proName);
+        $(row).append(tdIncomp);
+        $(row).append(tdInprog);
+        $(row).append(tdComp);
+        $(row).append(location);
+
+        $(addToList).append(row);
+
+        getLocation(address);
+    });
+
+    function getProjects() {
+        if (localStorage.getItem("project") === null && localStorage.getItem("address") === null) {
+            projects = [];
+            status = [];
+        } else {
+
+            projects = localStorage.getItem("project").split(",").map(x => {
+                return x
+            });
+            addresses = localStorage.getItem("address").split(",").map(x => {
+                return x
+
+            });
+
+            status = localStorage.getItem("status").split(",").map(x => {
+                return x
+
+            });
+
+            var addToList = $("#to-do-list");
+            var completeStatus;
+            var incompleteStatus;
+            var inprogStatus;
+            for (var i = 0; i < projects.length; i++) {
+
+                var row = $("<tr>");
+                var proName = $("<td>");
+                var tdComp = $("<td>");
+                var tdInprog = $("<td>");
+                var tdIncomp = $("<td>");
+                var location = $("<td>");
+                var locationBtn = $("<button>");
+                var compEl = $("<button>");
+                var inprogEl = $("<button>");
+                var incompEl = $("<button>");
+                var span = $("<span>");
+
+                if (status[i] === "complete") {
+                    completeStatus = "btn complete active"
+                    incompleteStatus = "btn incomplete"
+                    inprogStatus = "btn inprogress"
+                } else if (status[i] === "incomplete") {
+                    completeStatus = "btn complete"
+                    incompleteStatus = "btn incomplete active"
+                    inprogStatus = "btn inprogress"
+                } else {
+                    completeStatus = "btn complete"
+                    incompleteStatus = "btn incomplete"
+                    inprogStatus = "btn inprogress active"
+                }
+
+
+                $(span).html(projects[i]);
+                $(compEl).attr("class", completeStatus).html("Complete");
+                $(inprogEl).attr("class", inprogStatus).html("In Progress");
+                $(incompEl).attr("class", incompleteStatus).html("Incomplete");
+                $(locationBtn).attr("class", "btn location").html("Location");
+
+
+
+                $(proName).append(span);
+                $(tdComp).append(compEl);
+                $(tdInprog).append(inprogEl);
+                $(tdIncomp).append(incompEl);
+                $(location).append(locationBtn);
+
+
+                $(row).append(proName);
+                $(row).append(tdIncomp);
+                $(row).append(tdInprog);
+                $(row).append(tdComp);
+                $(row).append(location);
+
+
+                $(addToList).append(row);
+                countStatus();
+
+
+            }
+
+
+        }
+    }
+
+    function getLocation(address) {
+        var settings = {
             "async": true,
             "crossDomain": true,
             "url": "https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=en&address=" + address,
@@ -170,49 +291,7 @@ $(document).ready(function () {
                 });
             };
             initMap();
-        });*/
-    });
-
-    function getProjects() {
-        if (localStorage.getItem("project") === null && localStorage.getItem("address") === null) {
-
-            console.log("No stored items")
-        } else {
-            var storedProjects = localStorage.getItem("project");
-            var storedAddresses = localStorage.getItem("address");
-            var commaReplace = storedAddresses.replace(/%252C/g, ",");
-            var fixedAddress = commaReplace.replace(/%20/g, " ");
-
-            var addToList = document.getElementById("to-do-list");
-            var addListEl = document.createElement("li");
-
-            var formEl = document.createElement("form");
-            var labelEl = document.createElement("label");
-            var spanEl = document.createElement("span");
-
-            var compEl = document.createElement("input");
-            compEl.setAttribute("class", "complete");
-            compEl.setAttribute("type", "radio");
-            compEl.setAttribute("name", "group1")
-
-            var incompEl = document.createElement("input");
-            incompEl.setAttribute("type", "radio");
-            incompEl.setAttribute("name", "group1")
-
-            addToList.append(addListEl);
-            addListEl.append(formEl);
-            formEl.append(labelEl);
-            labelEl.append(compEl);
-            labelEl.append(spanEl);
-
-            spanEl.innerHTML = "Complete";
-
-            addToList.append(addListEl);
-
-            addListEl.append(storedProjects);
-
-
-        }
+        });
     }
 
 });

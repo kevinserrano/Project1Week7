@@ -12,19 +12,14 @@
 }
 
 
+
 #map {
     background-color: white;
     height: 410px;
 }
 
-.complete {
-    background-color: cyan;
-}
-
-.inprogress {
-    background-color: yellow;
-}
-
+.location,
+.incomplete,
 .complete,
 .inprogress {
     color: black;
@@ -46,3 +41,14 @@
     text-align: center;
 }
 
+.btn:focus {
+    background-color: lightgreen;
+}
+
+.active {
+    background-color: lightgreen;
+}
+
+#chart {
+    float: right;
+}
