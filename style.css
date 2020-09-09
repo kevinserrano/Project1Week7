@@ -23,7 +23,7 @@
 .complete,
 .inprogress {
     color: black;
-
+    font-size: small;
     border: black;
     border-style: solid;
     border-width: 1px;
