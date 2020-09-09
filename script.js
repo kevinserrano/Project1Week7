@@ -8,7 +8,6 @@ $(document).ready(function () {
     var inProgress;
     var projects;
     var addresses;
-    // this is an array to hold the status of each project
     var status;
 
 
@@ -32,39 +31,32 @@ $(document).ready(function () {
                 borderWidth: 2
             }]
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
+
     });
-    // function to  set variables to active when clicked
+    // function to declare the value of the global variables 
     function countStatus() {
         complete = $("button.complete.active").length
         incomplete = $("button.incomplete.active").length
         inProgress = $("button.inprogress.active").length
     }
-    //updates chart
+    // Updates chart with how many buttons are  complete/incomplete/in progress
     function updateChart() {
         myChart.data.datasets[0].data = [complete, inProgress, incomplete];
         myChart.update();
     }
 
-    // adding click function to buttons and updating status and count with functions
+    // Adding click function to buttons and updating status and count with functions
     $(document).on("click", "button", function () {
-
+        // THIS is reffering to the button
         if (this.classList.contains("complete")) {
             console.log("complete clicked");
+            // Declaring that active element THIS is always reffering to a button
             activeElement = $(this);
-
+            // Function call to see which button is clicked
             setActive(activeElement);
-            //function call to update totals for the chart
+            // Function call to update totals for the chart
             countStatus();
-            //function call to update status
+            //function call to update status of the buttons
             updateStatus("complete", activeElement)
 
         } else if (this.classList.contains("inprogress")) {
@@ -86,7 +78,7 @@ $(document).ready(function () {
 
 
 
-        // runs throug
+
         function setActive(activeElement) {
 
             activeElement.parent().parent().children().each(function () {
@@ -128,7 +120,6 @@ $(document).ready(function () {
         projects.push(projectName);
         localStorage.setItem("project", projects);
         console.log(projects);
-        // this is so that any additional project added starts as incomplete
         status.push("incomplete");
         localStorage.setItem("status", status);
 
@@ -149,7 +140,7 @@ $(document).ready(function () {
         $(compEl).attr("class", "btn complete").html("Complete");
         $(inprogEl).attr("class", "btn inprogress").html("In Progress");
         $(incompEl).attr("class", "btn incomplete active").html("Incomplete");
-        $(locationBtn).attr("class", "btn location").html("Location");
+        $(locationBtn).attr("class", "btn location").html("<i class='material-icons'>gps_fixed</i>");
 
 
 
@@ -230,7 +221,7 @@ $(document).ready(function () {
                 $(compEl).attr("class", completeStatus).html("Complete");
                 $(inprogEl).attr("class", inprogStatus).html("In Progress");
                 $(incompEl).attr("class", incompleteStatus).html("Incomplete");
-                $(locationBtn).attr("class", "btn location").html("Location");
+                $(locationBtn).attr("class", "btn location").html("<i class='material-icons'>gps_fixed</i>");
 
 
 
