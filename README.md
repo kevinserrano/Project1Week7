@@ -7,17 +7,17 @@ An application used to assist a small business owner of a welding company by kee
 
 ## Installation
 
-A web browser such as Google Chrome, Internet Explorer, Safari or Firefox is needed to run the application.
+A web browser such as Google Ch!rome, Internet Explorer, Safari or Firefox is needed to run the application.
 
-The application can be accessed via the following link: 
+The application can be accessed via the following link:
+https://kevinserrano.github.io/Project1Week7/
 
 ## Usage 
 
 The application page has two entry fields in which a project name and address may be entered. Once a project is added, the address of the project will display in the Location section. The project name and a series of buttons will display in the list section. As items are added to the list, the progress chart will automatically update to indicate the status as incomplete. Complete, inprogress, incomplete and location buttons will appear next to the project name in the list. These buttons may be used to update the project status and also redisplay the location of the project in the map. Projects, their status and address will persist in the page, even upon refreshing. 
 
 Usage is demonstrated via the gif below:
-
-
+[Welding Worklist](2020-09-09-10-07-31.gif)
 
 ## Credits
 
@@ -46,8 +46,15 @@ Mozilla MDN Web Docs JavaScript - https://developer.mozilla.org/en-US/docs/Web/J
 N/A
 
 ## Badges
+![W3C Validation](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fkevinserrano.github.io%2FProject1Week7%2F)
+
+![GitHub top language](https://img.shields.io/github/languages/top/kevinserrano/Project1Week7)
 
 ## Contributing
+Kevin Serrano
+Keita Suzuki
+Laura Rendon
+Analee Guerra
 
 ## Tests
 

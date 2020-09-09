@@ -3,13 +3,14 @@ $(document).ready(function () {
     getProjects();
 
     var ctx = $("#myChart");
-
     var complete;
     var incomplete;
     var inProgress;
     var projects;
+    var addresses;
     // this is an array to hold the status of each project
     var status;
+
 
     var myChart = new Chart(ctx, {
         type: "pie",
@@ -47,8 +48,7 @@ $(document).ready(function () {
         incomplete = $("button.incomplete.active").length
         inProgress = $("button.inprogress.active").length
     }
-    var addresses = [];
-
+    //updates chart
     function updateChart() {
         myChart.data.datasets[0].data = [complete, inProgress, incomplete];
         myChart.update();
@@ -112,7 +112,6 @@ $(document).ready(function () {
 
 
     });
-
     var toDoBtn = document.getElementById("addtodo");
     toDoBtn.addEventListener("click", function (event) {
         event.preventDefault();
@@ -124,8 +123,8 @@ $(document).ready(function () {
         addresses.push(address);
         localStorage.setItem("address", addresses);
         console.log(addresses);
+
         var projectName = document.getElementById("project-name").value;
-        console.log(projectName);
         projects.push(projectName);
         localStorage.setItem("project", projects);
         console.log(projects);
@@ -177,6 +176,8 @@ $(document).ready(function () {
         if (localStorage.getItem("project") === null && localStorage.getItem("address") === null) {
             projects = [];
             status = [];
+            addresses = [];
+
         } else {
 
             projects = localStorage.getItem("project").split(",").map(x => {
@@ -267,6 +268,7 @@ $(document).ready(function () {
                 "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
                 "x-rapidapi-key": "bac4682d6fmsh029578abb1cefd5p1e11bbjsn558f94329cba",
             }
+
         }
         $.ajax(settings).done(function (response) {
             console.log(response);
@@ -292,4 +294,5 @@ $(document).ready(function () {
             initMap();
         });
     }
+
 });
