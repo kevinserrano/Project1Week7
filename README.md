@@ -17,6 +17,7 @@ https://kevinserrano.github.io/Project1Week7/
 The application page has two entry fields in which a project name and address may be entered. Once a project is added, the address of the project will display in the Location section. The project name and a series of buttons will display in the list section. As items are added to the list, the progress chart will automatically update to indicate the status as incomplete. Complete, inprogress, incomplete and location buttons will appear next to the project name in the list. These buttons may be used to update the project status and also redisplay the location of the project in the map. Projects, their status and address will persist in the page, even upon refreshing. 
 
 Usage is demonstrated via the gif below:
+
 ![Welding Worklist](https://github.com/kevinserrano/Project1Week7/blob/master/Welding%20Worklist%20Project%201%20Week%207.gif)
 
 ## Credits
