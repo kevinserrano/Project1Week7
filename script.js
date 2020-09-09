@@ -3,11 +3,11 @@ $(document).ready(function () {
     getProjects();
 
     var ctx = $("#myChart");
-
     var complete;
     var incomplete;
     var inProgress;
     var projects;
+    var addresses;
     // this is an array to hold the status of each project
     var status;
 
@@ -48,8 +48,7 @@ $(document).ready(function () {
         incomplete = $("button.incomplete.active").length
         inProgress = $("button.inprogress.active").length
     }
-    var addresses = [];
-
+    //updates chart
     function updateChart() {
         myChart.data.datasets[0].data = [complete, inProgress, incomplete];
         myChart.update();
@@ -177,6 +176,8 @@ $(document).ready(function () {
         if (localStorage.getItem("project") === null && localStorage.getItem("address") === null) {
             projects = [];
             status = [];
+            addresses = [];
+
         } else {
 
             projects = localStorage.getItem("project").split(",").map(x => {
